@@ -1,1 +1,434 @@
+<!doctype html>
+<html lang="ko"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260915-03-e4a8234","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/c21197326e9a1154.telemetry_sdk.js" integrity="sha512-Aqwl+NmLtKBcMQM4HY+W9lmBHa+zP5MqSEuYfCjkzt4xeOSv2xNz81cCp7JyXBVrY+zojg5o94FHY/R31v2d3Q=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>중앙인의 밤</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&amp;family=Playfair+Display:ital,wght@0,500;0,600;1,500&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --ink: #06111f;
+      --deep: #09182a;
+      --navy: #0d2138;
+      --paper: #f4ead3;
+      --gold: #d8af61;
+      --soft-gold: #f4d999;
+      --mist: #dfe7ec;
+    }
 
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      width: 100%;
+      margin: 0;
+      color: var(--paper);
+      font-family: "Noto Serif KR", serif;
+      overflow-x: hidden;
+      background: var(--ink);
+    }
+
+    .mobile-invitation {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-scene {
+      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 4.5rem 1.75rem 4rem;
+      background: #06111f;
+    }
+
+    .hero-scene::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(180deg, rgba(3, 12, 24, 0.35) 0%, rgba(4, 14, 28, 0.64) 48%, rgba(6, 17, 31, 0.95) 100%),
+        radial-gradient(circle at 50% 32%, rgba(208, 164, 86, 0.16), transparent 30%);
+    }
+
+    .hero-scene::after {
+      content: "";
+      position: absolute;
+      inset: 1.15rem;
+      z-index: 3;
+      pointer-events: none;
+      border: 1px solid rgba(216, 175, 97, 0.38);
+    }
+
+    .hero-bokeh {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.56;
+      filter: saturate(0.78) contrast(1.05);
+      animation: ambientZoom 18s ease-in-out infinite alternate;
+    }
+
+    .glow {
+      position: absolute;
+      border-radius: 999px;
+      z-index: 2;
+      pointer-events: none;
+      background: rgba(246, 205, 116, 0.76);
+      filter: blur(2px);
+      box-shadow: 0 0 32px 10px rgba(227, 175, 73, 0.22);
+      animation: drift 8s ease-in-out infinite alternate;
+    }
+
+    .glow-one { width: 13px; height: 13px; top: 15%; left: 11%; animation-delay: -2s; }
+    .glow-two { width: 8px; height: 8px; top: 25%; right: 12%; animation-delay: -6s; }
+    .glow-three { width: 11px; height: 11px; bottom: 19%; right: 18%; animation-delay: -4s; }
+    .glow-four { width: 7px; height: 7px; bottom: 27%; left: 15%; animation-delay: -1s; }
+
+    .evergreen {
+      position: absolute;
+      z-index: 2;
+      width: 12rem;
+      height: 12rem;
+      opacity: 0.5;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(135deg, transparent 0 10px, rgba(167, 135, 66, 0.28) 11px 12px, transparent 13px 20px);
+      border-radius: 75% 25% 75% 25%;
+      filter: blur(0.2px);
+    }
+
+    .evergreen-left {
+      top: -5.2rem;
+      left: -6.8rem;
+      transform: rotate(-18deg);
+    }
+
+    .evergreen-right {
+      bottom: -7rem;
+      right: -7rem;
+      transform: rotate(145deg);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 4;
+      width: 100%;
+      max-width: 35rem;
+      text-align: center;
+      padding: 3rem 0 1rem;
+    }
+
+    .eyebrow-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .eyebrow-wrap::before,
+    .eyebrow-wrap::after {
+      content: "";
+      height: 1px;
+      width: clamp(1.6rem, 9vw, 3.6rem);
+      background: linear-gradient(90deg, transparent, rgba(216, 175, 97, 0.9));
+    }
+
+    .eyebrow-wrap::after {
+      transform: rotate(180deg);
+    }
+
+    .hero-title-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-title-wrap::after {
+      content: "";
+      position: absolute;
+      height: 1px;
+      width: 82%;
+      bottom: -1.3rem;
+      left: 9%;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .star-cluster {
+      color: var(--soft-gold);
+      font-size: 1.1rem;
+      letter-spacing: 1rem;
+      margin-top: 3.1rem;
+      opacity: 0.9;
+    }
+
+    .scroll-mark {
+      position: absolute;
+      z-index: 4;
+      left: 50%;
+      bottom: 1.65rem;
+      width: 1px;
+      height: 3rem;
+      background: linear-gradient(to bottom, rgba(216,175,97,0), rgba(216,175,97,0.9));
+      animation: breathe 2.6s ease-in-out infinite;
+    }
+
+    .reading-section {
+      position: relative;
+      padding: 7.5rem 1.75rem;
+      background:
+        radial-gradient(circle at 90% 0%, rgba(177, 136, 62, 0.13), transparent 28rem),
+        #09182a;
+    }
+
+    .reading-section::before {
+      content: "✦";
+      position: absolute;
+      top: 3.2rem;
+      left: calc(50% - 0.45rem);
+      color: var(--gold);
+      font-size: 1rem;
+    }
+
+    .message-frame {
+      width: 100%;
+      max-width: 35rem;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .message-copy {
+      white-space: pre-line;
+      word-break: keep-all;
+    }
+
+    .fine-rule {
+      width: 2.6rem;
+      height: 1px;
+      margin: 2.75rem auto;
+      background: var(--gold);
+      opacity: 0.78;
+    }
+
+    .details-section {
+      position: relative;
+      padding: 3rem 1.25rem 7.5rem;
+      background:
+        linear-gradient(180deg, #09182a 0%, #071524 100%);
+    }
+
+    .details-card {
+      width: 100%;
+      max-width: 34rem;
+      margin: 0 auto;
+      padding: 3.1rem 1.55rem;
+      text-align: center;
+      border: 1px solid rgba(216, 175, 97, 0.3);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.24);
+    }
+
+    .details-item + .details-divider-wrap {
+      margin: 2.65rem 0;
+    }
+
+    .details-divider-line {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(216,175,97,0.72), transparent);
+    }
+
+    .detail-icon {
+      width: 18px;
+      height: 18px;
+      margin: 0 auto 0.8rem;
+      color: var(--gold);
+      stroke-width: 1.35;
+    }
+
+    .footer-scene {
+      position: relative;
+      min-height: calc(82 * min(var(--vh, 1vh), 1vh));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1.75rem;
+      overflow: hidden;
+      text-align: center;
+      background:
+        radial-gradient(circle at 18% 75%, rgba(210, 163, 77, 0.24), transparent 20rem),
+        radial-gradient(circle at 90% 9%, rgba(181, 139, 67, 0.16), transparent 17rem),
+        #06111f;
+    }
+
+    .footer-scene::before {
+      content: "";
+      position: absolute;
+      inset: 1.3rem;
+      border-top: 1px solid rgba(216, 175, 97, 0.34);
+      border-bottom: 1px solid rgba(216, 175, 97, 0.34);
+      pointer-events: none;
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 33rem;
+    }
+
+    .ornament-ring {
+      width: 9rem;
+      height: 9rem;
+      border: 1px solid rgba(216, 175, 97, 0.19);
+      border-radius: 999px;
+      position: absolute;
+      top: 16%;
+      right: -4rem;
+      animation: slowSpin 28s linear infinite;
+    }
+
+    .ornament-ring::before,
+    .ornament-ring::after {
+      content: "✦";
+      color: var(--gold);
+      position: absolute;
+      font-size: 0.9rem;
+    }
+
+    .ornament-ring::before { top: 0.7rem; left: 1.2rem; }
+    .ornament-ring::after { bottom: 0.8rem; right: 1.4rem; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 1.1s ease, transform 1.1s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay { transition-delay: 0.16s; }
+    .reveal-delay-two { transition-delay: 0.3s; }
+
+    @keyframes ambientZoom {
+      from { transform: scale(1.02); }
+      to { transform: scale(1.1); }
+    }
+
+    @keyframes drift {
+      from { transform: translate3d(0, 0, 0); opacity: 0.5; }
+      to { transform: translate3d(9px, -12px, 0); opacity: 0.9; }
+    }
+
+    @keyframes breathe {
+      0%, 100% { opacity: 0.25; transform: translateY(0); }
+      50% { opacity: 0.92; transform: translateY(8px); }
+    }
+
+    @keyframes slowSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+  <script src="/_sdk/efe904fe8a212716.data_sdk.js" type="text/javascript" integrity="sha512-oiO0pmn5llS1uDeB2l690YywxqOe/a0U1kzY6RGaLZXtyh9YjTk1CUoK/bJUugc1QbUaJMJ3IE1MtpNY5NBZCw=="></script>
+  <script src="/_sdk/fab616ff82261ec3.resizing_sdk.js" type="text/javascript" integrity="sha512-6HMQCcUK6kDKuW59G/ZuFQDLjI3pOzz+2hgX6MaEV1izmYwYrrxv76nfirS4geYvvwnfUYWKbXBg/ycD2lR6jw=="></script>
+ </head>
+ <body data-template-id="__page-root" style="background: rgb(6, 17, 31);">
+  <div class="mobile-invitation">
+   <header class="hero-scene" aria-label="초대장 첫 화면"><img data-template-id="hero-bokeh-image" class="canva-image hero-bokeh" loading="lazy" src="https://images.pexels.com/photos/754263/pexels-photo-754263.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1280" alt="Close-up of glowing string lights creating a cozy ambiance with warm bokeh background.">
+    <div class="evergreen evergreen-left" aria-hidden="true"></div>
+    <div class="evergreen evergreen-right" aria-hidden="true"></div><span class="glow glow-one" aria-hidden="true"></span> <span class="glow glow-two" aria-hidden="true"></span> <span class="glow glow-three" aria-hidden="true"></span> <span class="glow glow-four" aria-hidden="true"></span>
+    <div class="hero-content">
+     <div class="eyebrow-wrap reveal">
+      <p data-template-id="hero-eyebrow" class="canva-text m-0 tracking-[0.17em]" style="color: rgb(244, 234, 211); font-family: &quot;Noto Serif KR&quot;; font-weight: 500; font-style: normal; font-size: 14px; letter-spacing: 0.08rem;">영천중앙초등학교 총동창회</p>
+     </div>
+     <div class="hero-title-wrap reveal reveal-delay">
+      <h1 data-template-id="hero-title" class="canva-text m-0 font-semibold" style="color: rgb(233, 201, 120); font-family: &quot;Noto Serif KR&quot;; font-weight: 700; font-style: normal; font-size: 48px; letter-spacing: -0.04rem; line-height: 1.25;">중앙인의 밤</h1>
+     </div>
+     <div class="star-cluster reveal reveal-delay-two" aria-hidden="true">
+      ✦ ✧ ✦
+     </div>
+    </div>
+    <div class="scroll-mark" aria-hidden="true"></div>
+   </header>
+   <main>
+    <section class="reading-section" aria-label="초대 메시지">
+     <div class="message-frame">
+      <p data-template-id="invitation-message" class="canva-text message-copy reveal m-0" style="color: rgb(244, 234, 211); font-family: &quot;Noto Serif KR&quot;; font-weight: 500; font-style: normal; font-size: 23px; line-height: 1.8;">그리운 얼굴들, 따뜻한 마음들이 모여
+함께하는 특별한 밤에 초대합니다.</p>
+      <div class="fine-rule reveal reveal-delay" aria-hidden="true"></div>
+      <p data-template-id="invitation-body" class="canva-text message-copy reveal reveal-delay-two m-0" style="color: rgb(223, 231, 236); font-family: &quot;Noto Serif KR&quot;; font-weight: 400; font-style: normal; font-size: 17px; line-height: 2;">한 해를 마무리하며, 서로의 안부를 나누고
+함께하는 즐거움 속에서 더 큰 내일을 기대하는
+영천중앙초등학교 총동창회 ‘중앙인의 밤’에 여러분을 모십니다.</p>
+     </div>
+    </section>
+    <section class="details-section" aria-label="일시 및 장소">
+     <div data-template-id="details-panel" class="canva-panel details-card reveal" style="background: linear-gradient(145deg, rgb(16, 41, 66), rgb(9, 24, 42));">
+      <div class="details-item"><i data-lucide="calendar-days" class="detail-icon" aria-hidden="true"></i>
+       <p data-template-id="date-label" class="canva-text m-0" style="color: rgb(216, 175, 97); font-family: &quot;Noto Serif KR&quot;; font-weight: 600; font-style: normal; font-size: 16px; letter-spacing: 0.12rem;">일시</p>
+       <p data-template-id="date-value" class="canva-text mt-3 mb-0" style="color: rgb(244, 234, 211); font-family: &quot;Noto Serif KR&quot;; font-weight: 500; font-style: normal; font-size: 20px; line-height: 1.6;">2026년 11월 07일 토요일 6시</p>
+      </div>
+      <div class="details-divider-wrap">
+       <div data-template-id="details-divider" class="canva-divider details-divider-line" style="background: linear-gradient(to right, transparent, rgb(216, 175, 97), transparent);"></div>
+      </div>
+      <div class="details-item"><i data-lucide="map-pin" class="detail-icon" aria-hidden="true"></i>
+       <p data-template-id="location-label" class="canva-text m-0" style="color: rgb(216, 175, 97); font-family: &quot;Noto Serif KR&quot;; font-weight: 600; font-style: normal; font-size: 16px; letter-spacing: 0.12rem;">장소</p>
+       <p data-template-id="location-value" class="canva-text mt-3 mb-0" style="color: rgb(244, 234, 211); font-family: &quot;Noto Serif KR&quot;; font-weight: 500; font-style: normal; font-size: 21px; line-height: 1.6;">스타컨벤션 웨딩</p>
+      </div>
+     </div>
+    </section>
+    <section class="footer-scene" aria-label="마무리 메시지">
+     <div class="ornament-ring" aria-hidden="true"></div>
+     <div class="footer-content">
+      <p data-template-id="closing-message" class="canva-text message-copy reveal m-0" style="color: rgb(244, 234, 211); font-family: &quot;Noto Serif KR&quot;; font-weight: 500; font-style: normal; font-size: 25px; line-height: 1.75;">오랜만에 만나는
+우리, 함께하는 행복한 시간!</p>
+      <div class="fine-rule reveal reveal-delay" aria-hidden="true"></div>
+      <p data-template-id="together-always" class="canva-text message-copy reveal reveal-delay-two m-0" style="color: rgb(233, 201, 120); font-weight: 500; font-style: italic; font-size: 21px; letter-spacing: 0.03rem; line-height: 1.15;">Together
+Always</p>
+      <p data-template-id="closing-heart" class="canva-text reveal reveal-delay-two mt-4 mb-0" style="color: rgb(216, 175, 97); font-weight: 400; font-style: normal; font-size: 24px;">♡</p>
+     </div>
+    </section>
+   </main>
+  </div>
+  <script src="/_sdk/a2fb166d7f9b28d6.editing_sdk.js" integrity="sha512-bes84+GHtQxBmMIhyqior0V2QotFBjKX/ArfVMC5Dr/7APFTzZTFNGovt6xo9jDVm+bP7sz7KffP7o+KYzmb5A=="></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      lucide.createIcons();
+
+      const revealItems = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.16 });
+
+      revealItems.forEach(function (item) {
+        observer.observe(item);
+      });
+    });
+  </script>
+ 
+</body></html>
